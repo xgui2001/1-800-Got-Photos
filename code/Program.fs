@@ -10,7 +10,11 @@ let main args =
     if args.Length < 1 then
         printfn "Usage: dotnet run <filename>"
     else
-        let picture = use image = Image.Load(args.[0])
+        use image = Image.Load(args.[0])
         image.Save(args.[0] + ".jpg")
+
+    //match parse args.[0] with
+    // | Some ast -> evaluate args.[0]
+    // | None -> printfn "Invalid program :("
 
     0
