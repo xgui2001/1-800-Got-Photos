@@ -1,0 +1,4 @@
+/Users/angelagui/cs334/lab10/code/obj/Debug/net6.0/lab10.fsproj.AssemblyReference.cache
+/Users/angelagui/cs334/lab10/code/obj/Debug/net6.0/lab10.AssemblyInfoInputs.cache
+/Users/angelagui/cs334/lab10/code/obj/Debug/net6.0/lab10.AssemblyInfo.fs
+/Users/angelagui/cs334/lab10/code/obj/Debug/net6.0/lab10.fsproj.CoreCompileInputs.cache
