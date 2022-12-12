@@ -1,20 +1,23 @@
-﻿//open Parser
-//open Evaluator
+﻿open AST
+open System
+open Parser
 
-open System.IO
-open SixLabors.ImageSharp
-open SixLabors.ImageSharp.Drawing
+open Combinator
 
+// a main method to parse the evaluated input with our parsers; if it was successfully parsed, print the ast out
+// otherwise tells the user the program input is invalid
 [<EntryPoint>]
 let main args =
     if args.Length < 1 then
         printfn "Usage: dotnet run <filename>"
+        1
     else
-        use image = Image.Load(args.[0])
-        image.Save(args.[0] + ".jpg")
+        let path = args.[0]
+        let program = IO.File.ReadAllText(path)
+        let input = debug program
 
-    //match parse args.[0] with
-    // | Some ast -> evaluate args.[0]
-    // | None -> printfn "Invalid program :("
+        match grammar input with
+        | Success (ast, _) -> printfn "%A" ast
+        | Failure (_, _) -> printfn "Didnt work"
 
-    0
+        0

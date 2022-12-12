@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/angelagui/cs334/lab10/lab10.fsproj": {}
+    "/Users/angelagui/cs334/skeleton/skeleton.fsproj": {}
   },
   "projects": {
-    "/Users/angelagui/cs334/lab10/lab10.fsproj": {
+    "/Users/angelagui/cs334/skeleton/skeleton.fsproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/angelagui/cs334/lab10/lab10.fsproj",
-        "projectName": "lab10",
-        "projectPath": "/Users/angelagui/cs334/lab10/lab10.fsproj",
+        "projectUniqueName": "/Users/angelagui/cs334/skeleton/skeleton.fsproj",
+        "projectName": "skeleton",
+        "projectPath": "/Users/angelagui/cs334/skeleton/skeleton.fsproj",
         "packagesPath": "/Users/angelagui/.nuget/packages/",
-        "outputPath": "/Users/angelagui/cs334/lab10/obj/",
+        "outputPath": "/Users/angelagui/cs334/skeleton/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/angelagui/.nuget/NuGet/NuGet.Config"
@@ -43,11 +43,6 @@
             "SixLabors.ImageSharp": {
               "target": "Package",
               "version": "[2.1.3, )"
-            },
-            "SixLabors.ImageSharp.Drawing": {
-              "target": "Package",
-              "version": "[1.0.0-beta15, )",
-              "generatePathProperty": true
             }
           },
           "imports": [
