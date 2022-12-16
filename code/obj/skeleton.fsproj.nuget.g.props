@@ -13,6 +13,7 @@
     <SourceRoot Include="/Users/angelagui/.nuget/packages/" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgSixLabors_ImageSharp Condition=" '$(PkgSixLabors_ImageSharp)' == '' ">/Users/angelagui/.nuget/packages/sixlabors.imagesharp/2.1.3</PkgSixLabors_ImageSharp>
     <PkgFSharp_Core Condition=" '$(PkgFSharp_Core)' == '' ">/Users/angelagui/.nuget/packages/fsharp.core/6.0.6</PkgFSharp_Core>
   </PropertyGroup>
 </Project>

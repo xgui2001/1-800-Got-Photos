@@ -297,11 +297,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/angelagui/cs334/skeleton/skeleton.fsproj",
+      "projectUniqueName": "/Users/angelagui/cs334/lab10/code/skeleton.fsproj",
       "projectName": "skeleton",
-      "projectPath": "/Users/angelagui/cs334/skeleton/skeleton.fsproj",
+      "projectPath": "/Users/angelagui/cs334/lab10/code/skeleton.fsproj",
       "packagesPath": "/Users/angelagui/.nuget/packages/",
-      "outputPath": "/Users/angelagui/cs334/skeleton/obj/",
+      "outputPath": "/Users/angelagui/cs334/lab10/code/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/angelagui/.nuget/NuGet/NuGet.Config"
@@ -332,7 +332,8 @@
           },
           "SixLabors.ImageSharp": {
             "target": "Package",
-            "version": "[2.1.3, )"
+            "version": "[2.1.3, )",
+            "generatePathProperty": true
           }
         },
         "imports": [

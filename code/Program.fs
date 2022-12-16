@@ -3,6 +3,7 @@ open System
 open Parser
 
 open Combinator
+open Evaluator
 
 // a main method to parse the evaluated input with our parsers; if it was successfully parsed, print the ast out
 // otherwise tells the user the program input is invalid
@@ -17,7 +18,12 @@ let main args =
         let input = debug program
 
         match grammar input with
-        | Success (ast, _) -> printfn "%A" ast
+        | Success (ast, _) ->
+            try
+                let ev = eval ast Map.empty
+                printfn "%A" ev
+            with :? Exception as e ->
+                printfn "Program failure: %s" e.Message
         | Failure (_, _) -> printfn "Didnt work"
 
         0

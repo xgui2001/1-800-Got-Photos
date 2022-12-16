@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hr7lPi/mVl8yl6WAMx/uZUjaDBEqZBew+uIjxWE/B5PKZ0r0orbLEbyiBwWd0Z8zDhzFjz2T92rSnJHm1Pb9vQ==",
+  "dgSpecHash": "+/VDicW4D+TES6nGkRuPJqxCpFJg6/QCna/vaEiMWGkXJ1MUK7zAqHmoZ99wiGf9QklDJ03ueSFL7ZZnoZFtcw==",
   "success": true,
-  "projectFilePath": "/Users/angelagui/cs334/skeleton/skeleton.fsproj",
+  "projectFilePath": "/Users/angelagui/cs334/lab10/code/skeleton.fsproj",
   "expectedPackageFiles": [
     "/Users/angelagui/.nuget/packages/fsharp.core/6.0.6/fsharp.core.6.0.6.nupkg.sha512",
     "/Users/angelagui/.nuget/packages/microsoft.netcore.platforms/5.0.0/microsoft.netcore.platforms.5.0.0.nupkg.sha512",

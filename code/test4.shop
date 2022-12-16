@@ -1,0 +1,3 @@
+x = Input "Cat.jpeg"
+Output x "Cat2.jpeg"
+
