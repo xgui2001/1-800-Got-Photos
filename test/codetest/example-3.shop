@@ -1,0 +1,6 @@
+Info "Cat.png"
+Input "Cat.png"
+MultSize 4
+DivSize 2
+OutWebp "NCat.webp"
+Info "NCat.webp"

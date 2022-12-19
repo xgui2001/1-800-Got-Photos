@@ -1,7 +1,16 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 
-\title{Language Specifications for Bhotoshop}
+\usepackage{times,graphicx,epstopdf,fancyhdr,amsfonts,amsthm,amsmath,algorithm,algorithmic,xspace,hyperref}
+\usepackage[left=1in,top=1in,right=1in,bottom=1in]{geometry}
+\usepackage{sect sty}	%For centering section headings
+\usepackage{enumerate}	%Allows more labeling options for enumerate environments 
+\usepackage{epsfig}
+\usepackage[space]{grffile}
+\usepackage{booktabs}
+\usepackage{forest}
+
+\title{Language Specifications for 1-800-Got-Photos}
 \author{Angela Gui}
 \date{December 2022}
 
@@ -11,40 +20,94 @@
 
 \section{Introduction}
 
-Bhotoshop is a language that allows users to modify an image easily. It implements several basic functions of a photo editor application, such as Adobe Photoshop. The main reason why I constructed my languge is that I wanted to provide an easier and more accessible way to modify an image from the command line. As Adobe products are rather costly for the average student who probably doesn't need its entire suite of functions, Bhotoshop could be a more convenient and cost-efficient way for users to perform basic photo editing.
+1-800-Got-Photos is a language that allows users to modify a raster image's file extension and size easily. It supports image format conversions between Jpeg, Png, Bmp, Gif, Pbm, Tiff, Tga and Webp, as well as basic uniform resizing operations. The main reason behind the construction of the language is the need for a quick and easy way to modify an image file format from the command line. When users upload an image to a website, they could encounter file format and/or size constraints; instead of dealing with the inconveniences of having to find image file format converters online, they could now depend on 1-800-Got-Photos as a handy tool to convert and resize their image.
 
 \section{Design Principles}
 
-The main guilding principles in Bhotoshop's language design are simplicity and usability. As I want my language to be easy to use even for users who are not tech savvy, I modeled my syntax after Python, which is one of the most accessible languages for scripting. 
+The main guiding principles in 1-800-Got-Photos's language design are simplicity and usability. As I want my language to be easy to use even for users who are not tech savvy, I modeled my syntax as intuitive as possible for an average user who understands English, such as having function names that are syntactically close to English (eg. parsing in/parsing out images using the Input and Output functions).
 
 \section{Examples}
 
-    Example 1: Input("Filename")
+    Example 1: \begin{verbatim}
 
-Run the example using dotnet run "example-1.lang". This example loads in an image (jpg/jpeg/png file) with its name and path specified by the command line argument of Filename. If the image loading was successful, the command line output should be "Loaded successfully'.
+    Input "Cat.jpeg"
+        
+    \end{verbatim}
 
-Example 2: Output("Filename")
+Run the example using "dotnet run example-1.shop". This example loads in an raster image file with its name and path specified by "Cat.jpeg". If the program execution is successful, the command line output should be: 
+    \begin{verbatim}
 
-Run the example using dotnet run "example-2.lang". This example creates an jpg file with its name specified by the command line argument of Filename in the same directory of the code. If the image creation was successful, the command line output should be "Saved successfully'.
+    Your image Cat.jpeg is loaded 
 
-Example 3: Info("Filename")
+    Program Success!
 
-Run the example using dotnet run "example-3.lang". This example loads in an image  (jpg/jpeg/png file) with its name path specified by the command line argument of Filename, stores the image metadata in a string array, and prints out its corresponding height and width in pixels. If the image loading was successful, the command line output should be "Image height: x pixels, Image width: y pixels".
-
-\section{Language Concepts}
-
-To write a program in Bhotoshop, users need to have basic familarity with primitives and combining forms. 
+        
+    \end{verbatim}
     
-Language primitives are ImageName and FunctionName, which are string variables that represent the name of the image and the name of the functions applied onto the image. 
+    Example 2:  \begin{verbatim}
 
-The two primitives combine to form Application. They are applied right to left, meaning a function of FunctionName will be applied to a variable of ImageName if they are written in the style of FunctionName(ImageName).
+    Input "Cat.jpeg"
+    OutPng "Cat.png"
+    OutGif "Cat.gif"
+        
+    \end{verbatim}
+
+Run the example using "dotnet run example-2.shop". This example loads in an raster image file with its name and path specified by "Cat.jpeg", convert the loaded image file format into png and generate a png image file with its name and path specified by "Cat.png", convert the loaded image file format into gif and generate a gif image file with its name and path specified by "Cat.gif". If the program execution is successful, it will create two new image files Cat.png and Cat.gif in the same directory of the project. The command line output should be: 
+    \begin{verbatim}
+
+    Your image Cat.jpeg is loaded 
+
+    Your image Cat.png is saved 
+
+    Your image Cat.gif is saved 
+
+    Program Success!
+
+        
+    \end{verbatim}
+    
+
+Example 3:  \begin{verbatim}
+
+    Info "Cat.png"
+    Input "Cat.png"
+    MultSize 4
+    DivSize 2
+    OutWebp "NCat.webp"
+    Info "NCat.webp"
+        
+    \end{verbatim}
+
+Run the example using "dotnet run example-2.shop". This example prints out the format, height and width about a raster image with its name and path specified by "Cat.png", loads in the same image, multiply its width and height by 4, divide its width and height by 2, convert the loaded image file format into webp and generate a webp image file with its name and path specified by "NCat.webp", and prints out information about the image "NCat.webp". If the program execution is successful, it will create one new image file NCat.webp in the same directory of the project. The command line output should be: 
+    \begin{verbatim}
+
+    Image Format: Png
+    Image Height: 480px
+    Image Width: 481px 
+
+    Your image Cat.png is loaded 
+
+    Image size has been multiplied by 4 
+
+    Image size has been divided by 2 
+
+    Your image NCat.webp is saved 
+
+    Image Format: WebP
+    Image Height: 960px
+    Image Width: 962px 
+
+    Program Success!
+        
+    \end{verbatim}
+    
 
 \section{Formal Syntax}
 
 $
 \langle Application \rangle ::= \langle FunctionName \rangle + "(" \langle ImageName \rangle + ")" \\
-\\ \langle ImageName \rangle ::= String
-\\ \langle FunctionName \rangle ::= String
+\\ \langle filename \rangle ::= String
+\\ \langle LoadedImage \rangle ::= Image
 $
 
 \section{Semantics}
@@ -54,6 +117,6 @@ ImageName is a terminal of String type.
 FunctionName is a terminal of String type. 
 
 \section{Remaining Work}
-There are still significant work left to do on implementing various type of function that alters the image, such as flip or recolor. There will probably be a variables that keeps track of pixel positions as well as pixel colors/ 
+The next step in the project would be creating variable and variable assignments so that the language could take in multiple images at the same time. Currently, 1-800-Got-Photos only supports conversion and output of one image at a time; subsequent image load ins will overwrite the previous input, and if Output is called, the program will always generate the new image based on the last image that is loaded in using Input. Implementing variables would allow users to convert, resize, and keep track of multiple images at the same time. In the earlier versions of the language, there were ideas about adding features that allow users to flip and recolor certain pixels of the entire image, however these were discarded due to concerns about usability as well as the complexities of implementations. 
 
 \end{document}
