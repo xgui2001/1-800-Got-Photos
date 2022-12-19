@@ -3,6 +3,7 @@ namespace actualtest
 open System
 open Microsoft.VisualStudio.TestTools.UnitTesting
 open Parser
+open Combinator
 open Evaluator
 open AST
 
@@ -18,15 +19,15 @@ type TestClass() =
         let actual, _ = eval ast Map.empty
         Assert.AreEqual(expected, actual)
 
-    //Test whether parse correctly
-    [<TestMethod>]
-    member this.TestP() =
-        let program = "Info 'Cat.jpeg'"
-        let expected = Info "Cat.jpeg"
-        let ast_maybe = parse program
+// //Test whether parse correctly
+// [<TestMethod>]
+// member this.TestP() =
+//     let program = "MultSize 2"
+//     let expected = MultSize "2"
+//     let ast_maybe = recparser (program)
 
-        match ast_maybe with
-        | Some ast ->
-            let actual, _ = eval ast Map.empty
-            Assert.AreEqual(expected, actual)
-        | None -> Assert.IsTrue(false)
+//     match ast_maybe with
+//     | Some ast ->
+//         let actual, _ = eval ast Map.empty
+//         Assert.AreEqual(expected, actual)
+//     | None -> Assert.IsTrue(false)
