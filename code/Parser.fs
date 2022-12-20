@@ -4,7 +4,7 @@ open Combinator
 
 open AST
 
-//declare expression parser so we can use it recursively *)
+//declare expression parser so we can use it recursively
 let pexpr, pexprImpl = recparser ()
 
 // a parser to parse the filename of the image
@@ -13,12 +13,12 @@ let filename = pmany1 (pletter <|> pchar '.' <|> pdigit) |>> (stringify) //<!> "
 // a parser to parse size
 let size = pmany1 (pdigit) |>> (stringify) // <!> "size"
 
-// a parser to parse pmultsize
+// a parser to parse MultSize
 let pmultsize =
     pright (pleft (pstr "MultSize") (pws1)) size |>> (fun a -> MultSize a)
 //<!> "pmultsize"
 
-// a parser to parse pdivsize
+// a parser to parse DivSize
 let pdivsize = pright (pleft (pstr "DivSize") (pws1)) size |>> (fun a -> DivSize a)
 //<!> "pdivsize"
 
@@ -75,7 +75,7 @@ let pad p = pbetween whitespace whitespace p
  *)
 let pexprs = pmany1 (pleft (pad pexpr) pws0) |>> Sequence //<!> "pexprs"
 
-// a parser that converts the input to an expr (?)
+// a reursive parser that evaluates all the exprs
 pexprImpl
 := pinput
    <|> poutput
