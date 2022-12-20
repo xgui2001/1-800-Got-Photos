@@ -20,7 +20,7 @@
 
 \section{Introduction}
 
-1-800-Got-Photos is a language that allows users to modify a raster image's file extension and size easily. It supports image format conversions between Jpeg, Png, Bmp, Gif, Pbm, Tiff, Tga and Webp, as well as basic uniform resizing operations. The main reason behind the construction of the language is the need for a quick and easy way to modify an image file format from the command line. When users upload an image to a website, they could encounter file format and/or size constraints; instead of dealing with the inconveniences of having to find image file format converters online, they could now depend on 1-800-Got-Photos as a handy tool to convert and resize their image.
+1-800-Got-Photos is a language that allows users to modify a raster image's file extension and size easily. It relies on the ImageSharp library by SixLabors, and supports image format conversions between Jpeg, Png, Bmp, Gif, Pbm, Tiff, Tga and Webp, as well as basic uniform resizing operations. The main reason behind the construction of the language is the need for a quick and easy way to modify an image file format from the command line. When users upload an image to a website, they could encounter file format and/or size constraints; instead of dealing with the inconveniences of having to find image file format converters online, they could now depend on 1-800-Got-Photos as a handy tool to convert and resize their image.
 
 \section{Design Principles}
 
@@ -105,20 +105,20 @@ Run the example using "dotnet run example-2.shop". This example prints out the f
 \section{Formal Syntax}
 
 $
-\langle expr\rangle := \langle Input \rangle \\ \langle Output \rangle \\ \langle OutBmp \rangle \\ \langle OutGif \rangle \\ \langle OutJpeg \rangle \\ \langle OutPbm \rangle \\ \langle OutPng \rangle \\ \langle OutTiff \rangle \\ \langle OutTga \rangle  \\\langle OutWebp \rangle \\\langle Info \rangle  \\ \langle MultSize \rangle \\ \langle DivSize \rangle \\ \langle LoadedImage \rangle
-\\ \langle Input \rangle ::= Input \langle filename \rangle \\
-\langle Output \rangle ::= Output \langle filename \rangle \\
-\langle OutBmp \rangle ::= OutBmp \langle filename \rangle \\
-\langle OutGif \rangle ::= OutGif \langle filename \rangle \\
-\langle OutJpeg \rangle ::= OutJpeg \langle filename \rangle \\
-\langle OutPbm \rangle ::= OutPbm \langle filename \rangle \\
-\langle OutPng \rangle ::= OutPng \langle filename \rangle \\
-\langle OutTiff \rangle ::= OutTiff\langle filename \rangle \\
-\langle OutTga \rangle ::= OutTga \langle filename \rangle \\
-\langle OutWebp \rangle ::= OutWebp \langle filename \rangle \\
-\langle Info \rangle ::= Info \langle filename \rangle\\
-\langle MultSize \rangle ::= MultSize \langle size \rangle \\
-\langle DivSize \rangle ::= DivSize \langle size \rangle \\
+\langle expr\rangle := \langle Input \rangle \\ | \langle Output \rangle \\ | \langle OutBmp \rangle \\ | \langle OutGif \rangle \\ | \langle OutJpeg \rangle \\ | \langle OutPbm \rangle \\ | \langle OutPng \rangle \\ | \langle OutTiff \rangle \\ | \langle OutTga \rangle  \\ | \langle OutWebp \rangle \\ | \langle Info \rangle \\ | \langle MultSize \rangle \\ | \langle DivSize \rangle \\ | \langle LoadedImage \rangle
+\\ \langle Input \rangle ::= \langle Input \rangle \langle filename \rangle \\
+\langle Output \rangle ::= \langle Output \rangle \langle filename \rangle \\
+\langle OutBmp \rangle ::= \langle OutBmp \rangle \langle filename \rangle \\
+\langle OutGif \rangle ::= \langle OutGif \rangle \langle filename \rangle \\
+\langle OutJpeg \rangle ::= \langle OutJpeg \rangle \langle filename \rangle \\
+\langle OutPbm \rangle ::= \langle OutPbm \rangle \langle filename \rangle \\
+\langle OutPng \rangle ::= \langle OutPng \rangle \langle filename \rangle \\
+\langle OutTiff \rangle ::= \langle OutTiff \rangle \langle filename \rangle \\
+\langle OutTga \rangle ::= \langle OutTga \rangle \langle filename \rangle \\
+\langle OutWebp \rangle ::= \langle OutWebp \rangle \langle filename \rangle \\
+\langle Info \rangle ::= \langle Info \rangle \langle filename \rangle\\
+\langle MultSize \rangle ::= \langle MultSize \rangle \langle size \rangle \\
+\langle DivSize \rangle ::= \langle DivSize \rangle \langle size \rangle \\
 \\ \langle filename \rangle ::= "\langle String \rangle"
 \\ \langle size \rangle ::= \langle String \rangle
 \\ \langle LoadedImage \rangle ::= \langle Image \rangle
@@ -126,22 +126,20 @@ $
 
 \section{Semantics}
 
-Input is a String type that applies the Input function to the image whose name and path is specified by the filename. 
-\\Output is a String type that applies the Output function to the image whose name and path is specified by the filename. 
-\\OutBmp is a String type that applies the OutBmp function to the image whose name and path is specified by the filename. 
-\\OutGif is a String type that applies the OutGif function to the image whose name and path is specified by the filename. 
-\\OutJpeg is a String type that applies the OutJpeg function to the image whose name and path is specified by the filename. 
-\\OutPbm is a String type that applies the OutPbm function to the image whose name and path is specified by the filename. 
-\\OutPng is a String type that applies the OutPng function to the image whose name and path is specified by the filename. 
-\\OutTiff is a String type that applies the OutTiff function to the image whose name and path is specified by the filename. 
-\\OutTga is a String type that applies the OutTga function to the image whose name and path is specified by the filename. 
-\\OutWebp is a String type that applies the OutWebp function to the image whose name and path is specified by the filename. 
-\\Info is an application that applies the Info function to the image whose name and path is specified by the filename. 
-\\MultSize is a String type that applies the MultSize function to the image whose name and path is specified by the filename. 
-\\DivSize is a String type that applies the DivSize function to the image whose name and path is specified by the filename. 
-LoadedImage is a terminal of Image type. 
-filename is a terminal of String type. 
-size is a terminal of String type. 
+Input: Input's Syntax is Input "filename". Its Abstract Syntax Type is Input of filename. Its Type is String. It evaluates the filename String, loads in the image whose path, name, and file format is specified by filename and constructs an LoadedImage, which is then stored in a Map environment. There must exist an image whose path, name, and file format is specified by filename in the program directory, otherwise the evaluator fails and alerts users of the error.
+\\Output: Output's Syntax is Output "filename". Its Abstract Syntax Type is Output of filename. Its Type is String. It evaluates the filename String, detects whether a LoadedImage has been stored in the Map, then saves the LoadedImage to the program directory as an image with its name and file format specified by filename. A LoadedImage must have been stored in the Map, otherwise the program fails and alerts users of the error.
+\\OutBmp: OutBmp's Syntax is OutBmp "filename". Its Abstract Syntax Type is OutBmp of filename. Its Type is String. It evaluates the filename String, detects whether a LoadedImage has been stored in the Map, then saves the LoadedImage to the program directory as a Bmp image with its name specified by filename. A LoadedImage must have been stored in the Map, and filename must contain .bmp, otherwise the evaluator fails and alerts users of the error.
+\\OutGif: OutGif's Syntax is OutGif "filename". Its Abstract Syntax Type is OutGif of filename. Its Type is String. It evaluates the filename String, detects whether a LoadedImage has been stored in the Map, then saves the LoadedImage to the program directory as a Gif image with its name specified by filename. A LoadedImage must have been stored in the Map, and filename must contain .gif, otherwise the evaluator fails and alerts users of the error.
+\\OutJpeg : OutJpeg's Syntax is OutJpeg "filename". Its Abstract Syntax Type is OutJpeg of filename. Its Type is String. It evaluates the filename String, detects whether a LoadedImage has been stored in the Map, then saves the LoadedImage to the program directory as a Jpeg image with its name specified by filename. A LoadedImage must have been stored in the Map, and filename must contain .jpeg, otherwise the evaluator fails and alerts users of the error.
+\\OutPbm: OutPbm's Syntax is OutPbm "filename". Its Abstract Syntax Type is OutPbm of filename. Its Type is String. It evaluates the filename String, detects whether a LoadedImage has been stored in the Map, then saves the LoadedImage to the program directory as a Pbm image with its name specified by filename. A LoadedImage must have been stored in the Map, and filename must contain .pbm, otherwise the evaluator fails and alerts users of the error.
+\\OutPng: OutPng's Syntax is OutPng "filename". Its Abstract Syntax Type is OutPng of filename. Its Type is String. It evaluates the filename String, detects whether a LoadedImage has been stored in the Map, then saves the LoadedImage to the program directory as a Png image with its name specified by filename. A LoadedImage must have been stored in the Map, and filename must contain .png, otherwise the evaluator fails and alerts users of the error.
+\\OutTiff: OutTiff's Syntax is OutTiff "filename". Its Abstract Syntax Type is OutTiff of filename. Its Type is String. It evaluates the filename String, detects whether a LoadedImage has been stored in the Map, then saves the LoadedImage to the program directory as a Tiff image with its name specified by filename. A LoadedImage must have been stored in the Map, and filename must contain .tiff, otherwise the evaluator fails and alerts users of the error.
+\\OutTga: OutTga's Syntax is OutTga "filename". Its Abstract Syntax Type is OutTga of filename. Its Type is String. It evaluates the filename String, detects whether a LoadedImage has been stored in the Map, then saves the LoadedImage to the program directory as a Tga image with its name specified by filename. A LoadedImage must have been stored in the Map, and filename must contain .tga, otherwise the evaluator fails and alerts users of the error.
+\\OutWebp: OutWebp's Syntax is OutWebp "filename". Its Abstract Syntax Type is OutWebp of filename. Its Type is String. It evaluates the filename String, detects whether a LoadedImage has been stored in the Map, then saves the LoadedImage to the program directory as a Webp image with its name specified by filename. A LoadedImage must have been stored in the Map, and filename must contain .webp, otherwise the evaluator fails and alerts users of the error.
+\\Info: Info's Syntax is Info "filename". Its Abstract Syntax Type is Info of filename. Its Type is String. It evaluates the filename String, and prints out information about the image format, height, width of the image whose path and name is specified by filename.
+\\MultSize: MultSize's Syntax is MultSize "size". Its Abstract Syntax Type is MultSize of size. Its Type is String. It evaluates the size String, converts it to an Int, detects whether a LoadedImage has been stored in the Map, and multiplies the LoadedImage's width and height by the specified Int. A LoadedImage must have been stored in the Map, and the size String must be able to be parsed in as the 32-bit F\# Integer type (Int32), otherwise the evaluator fails and alerts users of the error.
+\\DivSize: DivSize's Syntax is DivSize "size". Its Abstract Syntax Type is DivSize of size. Its Type is String. It evaluates the size String, converts it to an Int, detects whether a LoadedImage has been stored in the Map, and divides the LoadedImage's width and height by the specified Int. A LoadedImage must have been stored in the Map, and the size String must be able to be parsed in as the 32-bit F\#  Integer type (Int32), otherwise the evaluator fails and alerts users of the error.
+\\LoadedImage: LoadedImage's Abstract Syntax Type is LoadedImage of Image. It is a terminal of Image type, defined by the ImageSharp Library. 
 
 \section{Remaining Work}
 The next step in the project would be creating variable and variable assignments so that the language could take in multiple images at the same time. Currently, 1-800-Got-Photos only supports conversion and output of one image at a time; subsequent image load ins will overwrite the previous input, and if Output is called, the program will always generate the new image based on the last image that is loaded in using Input. Implementing variables would allow users to convert, resize, and keep track of multiple images at the same time. In the earlier versions of the language, there were ideas about adding features that allow users to flip and recolor certain pixels of the entire image, however these were discarded due to concerns about usability as well as the complexities of implementations. 
